@@ -1,3 +1,4 @@
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilters from "@/components/home/HomeFilters";
 import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
@@ -8,30 +9,38 @@ import Link from "next/link";
 
 const questions = [
   {
-    _id: 1,
-    title: "Cascading deletes in SQLAlchemy?",
+    _id: "1",
+    title: "How to learn TypeScript?",
     tags: [
-      { _id: 1, name: "python" },
-      { _id: 2, name: "sql" },
+      { _id: "1", name: "TypeScript" },
+      { _id: "2", name: "Programming" },
     ],
-    author: "John Doe",
-    upvotes: 100,
-    views: 100,
-    answers: 2,
-    createdAt: "2021-09-01T12:00:00:000Z",
+    author: {
+      _id: "101",
+      name: "John Doe",
+      picture: "john-doe.jpg",
+    },
+    upvotes: 10,
+    views: 1000000,
+    answers: [],
+    createdAt: new Date("2024-02-15T08:00:00.000Z"),
   },
   {
-    _id: 2,
-    title: "How to center a div?",
+    _id: "2",
+    title: "What are the benefits of using React?",
     tags: [
-      { _id: 1, name: "css" },
-      { _id: 2, name: "sql" },
+      { _id: "3", name: "React" },
+      { _id: "4", name: "Frontend" },
     ],
-    author: "John Doe",
-    upvotes: 50,
-    views: 90,
-    answers: 2,
-    createdAt: "2021-09-01T12:00:00:000Z",
+    author: {
+      _id: "102",
+      name: "Jane Smith",
+      picture: "jane-smith.jpg",
+    },
+    upvotes: 20,
+    views: 200,
+    answers: [],
+    createdAt: new Date("2024-02-14T10:00:00.000Z"),
   },
 ];
 
@@ -67,7 +76,19 @@ export default function Home() {
 
         {questions.length > 0 ? (
           questions.map((question) => {
-            return <div>question card</div>;
+            return (
+              <QuestionCard
+                key={question._id}
+                _id={question._id}
+                title={question.title}
+                tags={question.tags}
+                author={question.author}
+                upvotes={question.upvotes}
+                views={question.views}
+                answers={question.answers}
+                createdAt={question.createdAt}
+              />
+            );
           })
         ) : (
           <NoResult
